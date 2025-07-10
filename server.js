@@ -22,6 +22,12 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
+// Add a simple health check route to avoid "Cannot GET /"
+app.get('/', (req, res) => {
+  res.send('✅ Dropify backend is running!');
+});
+
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
